@@ -50,18 +50,18 @@ time = now.strftime("%H:%M")
 row = [date, time, weekWords, timeToHome, timeToWork]
 
 writer = csv.writer(f)
-#writer.writerow(("Date", "Time", "Weekday", "To Home", "To Work"))
-writer.writerow( (row[0],  row[1], row[2], row[3], row[4]) )
+writer.writerow(("Date", "Time", "Weekday", "To Home", "To Work"))
+#writer.writerow( (row[0],  row[1], row[2], row[3], row[4]) )
 
 conn = mysql.connector.connect(user='root', password = 'raspberry', host='localhost', database = 'googleMaps')
 
 cursor = conn.cursor()
 
-addRow = ("INSERT INTO mapsTable(`Date`, `Time`, `Weekday`, `toHome`, `toWork`) VALUES (%i, %s, %s, %s, %s)")
+#addRow = ("INSERT INTO mapsTable(`Date`, `Time`, `Weekday`, `toHome`, `toWork`) VALUES (%s, %s, %s, %s, %s)")
 
-values = (row[0], row[1], row[2], row[3], row[4])
+#values = (row[0], row[1], row[2], row[3], row[4])
 
-cursor.execute(addRow, values)
+#cursor.execute(addRow, values)
 
 conn.commit()
 
