@@ -1,4 +1,4 @@
-import requests
+rimport requests
 import mysql.connector
 #pip install requests
 import csv 
