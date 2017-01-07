@@ -17,6 +17,7 @@ if ($_POST['action'] == "test"){
     }
     
     $arr = array();
+    $final = array("elts" => array());
     while ($row = $result->fetch_assoc()){
         $time = $row['Time'];
         $duration = $row['toHome'];
@@ -33,11 +34,20 @@ if ($_POST['action'] == "test"){
             array_push($arr[$time], $duration);
         }
         else{
-            $arr[$time] = array($duration);
+            $arr[$time] = array($time, $duration);
         }
     }
     
-    print_r($arr);
+    foreach ($arr as $key => $value){
+        // print_r($value);
+        array_push($final["elts"], $value);
+    }
+    
+    $final['keys'] = array_keys($arr);
+    
+
+    echo json_encode($final);
+    
     
 }
 

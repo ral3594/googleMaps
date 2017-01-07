@@ -1,19 +1,10 @@
-function buildChart(){
+function buildChart(info){
+    var elts = JSON.stringify(info["elts"]);
+    var keys = JSON.stringify(info["keys"]);
+    
     var chart = c3.generate({
         data: {
-            rows: [
-            ['data4', 'data2', 'data3'],
-            [90, 120, 300],
-            [40, 160, 240],
-            [50, 200, 290],
-            [120, 160, 230],
-            [80, 130, 300],
-            [90, 220, 320],
-        ],
-            columns: [
-                ['data1', 30, 200, 100, 400, 150, 250],
-                ['data2', 130, 100, 140, 200, 150, 50]
-            ],
+            rows: elts,
             type: 'bar'
         },
         bar: {
@@ -34,7 +25,9 @@ function loadData(){
         type: "post",
         dataType: "json",
         success: function(result){
-            alert(result);
+            console.log(result["keys"]);
+            console.log(JSON.stringify(result["elts"]));
+            buildChart(result);
         },
         error: function(){
             
@@ -43,7 +36,7 @@ function loadData(){
 }
     
 $(document).ready(function(){
-    buildChart();
+    // buildChart();
     loadData();
     
 });
